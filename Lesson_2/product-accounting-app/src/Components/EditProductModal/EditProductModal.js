@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Modal from "react-modal";
+import "../EditProductModal/EditProductModal.css";
 
 class EditProductModal extends Component {
   constructor(props) {
@@ -59,32 +60,36 @@ class EditProductModal extends Component {
               this.setState({ count: event.target.value });
             }}
           />
-          <button
-            onClick={() => {
-              this.setState({
-                name: null,
-                category: null,
-                price: null,
-                count: null,
-              });
-              this.props.onCloseModal();
-            }}
-          >
-            X
-          </button>
-          <button
-            onClick={() => {
-              this.setState({
-                name: null,
-                category: null,
-                price: null,
-                count: null,
-              });
-              this.props.onAccepted(this.state);
-            }}
-          >
-            Confirm
-          </button>
+          <div className="buttons-group">
+            <button
+              onClick={() => {
+                this.setState({
+                  name: null,
+                  category: null,
+                  price: null,
+                  count: null,
+                });
+                this.props.onCloseModal();
+              }}
+              className="btn btn-danger"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                this.setState({
+                  name: null,
+                  category: null,
+                  price: null,
+                  count: null,
+                });
+                this.props.onAccepted(this.state);
+              }}
+              className="btn btn-success"
+            >
+              Confirm
+            </button>
+          </div>
         </div>
       </Modal>
     );
