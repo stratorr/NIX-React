@@ -1,0 +1,17 @@
+.AddProduct {
+  padding: 20px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddProduct input,
+p,
+button {
+  margin-left: 15px;
+}
+
+.btn-add {
+  width: 100px;
+  height: 50px;
+}
