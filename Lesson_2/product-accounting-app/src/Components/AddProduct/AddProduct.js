@@ -25,6 +25,7 @@ class AddProduct extends Component {
           onChange={(e) => {
             this.setState({ name: e.target.value });
           }}
+          required
         />
         <p>Category:</p>
         <input
@@ -32,6 +33,7 @@ class AddProduct extends Component {
           onChange={(e) => {
             this.setState({ category: e.target.value });
           }}
+          required
         />
         <p>Price:</p>
         <input
@@ -39,6 +41,7 @@ class AddProduct extends Component {
           onChange={(e) => {
             this.setState({ price: e.target.value });
           }}
+          required
         />
 
         <p>Count:</p>
@@ -48,11 +51,20 @@ class AddProduct extends Component {
             this.setState({ count: e.target.value });
           }}
           className="test"
+          required
         />
 
         <button
           onClick={() => {
             this.props.addNewProduct(name, category, price, count);
+
+            this.setState({
+              name: "",
+              category: "",
+              price: 0,
+              count: 0,
+            });
+
             for (var i = 0; i < inputs.length; i++) {
               inputs[i].value = "";
             }
