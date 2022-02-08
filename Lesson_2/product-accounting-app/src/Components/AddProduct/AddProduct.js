@@ -15,6 +15,7 @@ class AddProduct extends Component {
 
   render() {
     const { name, category, price, count } = this.state;
+    var inputs = document.querySelectorAll("input[type=text]");
 
     return (
       <div className="AddProduct">
@@ -46,10 +47,16 @@ class AddProduct extends Component {
           onChange={(e) => {
             this.setState({ count: e.target.value });
           }}
+          className="test"
         />
 
         <button
-          onClick={() => this.props.addNewProduct(name, category, price, count)}
+          onClick={() => {
+            this.props.addNewProduct(name, category, price, count);
+            for (var i = 0; i < inputs.length; i++) {
+              inputs[i].value = "";
+            }
+          }}
           className="btn btn-primary"
         >
           Add
