@@ -1,0 +1,13 @@
+.search {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search__panel {
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 1px solid lightslategray;
+}

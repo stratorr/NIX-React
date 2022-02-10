@@ -2,6 +2,8 @@ import { v4 as uuidv4 } from "uuid";
 import RenderProductCard from "../RenderProducCard/RenderProductCard";
 import AddProduct from "../AddProduct/AddProduct";
 import EditProductModal from "../EditProductModal/EditProductModal";
+import SearchPanel from "../SearchPanel/SearchPanel";
+import CategoryFilter from "../CategotyFilter/CategoryFilter";
 
 const { Component } = require("react");
 
@@ -10,7 +12,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isOpenModal: false,
       currentId: null,
       products: [
         {
@@ -34,7 +35,16 @@ class App extends Component {
           price: 50,
           count: 400,
         },
+        {
+          id: uuidv4(),
+          name: "Potato",
+          category: "Vegetables",
+          price: 50,
+          count: 99,
+        },
       ],
+      term: "",
+      filter: "",
     };
   }
 
@@ -85,12 +95,54 @@ class App extends Component {
     });
   };
 
+  searchProd = (items, term) => {
+    if (term.length === 1) {
+      return items;
+    }
+
+    return items.filter((item) => {
+      return item.name.indexOf(term) > -1;
+    });
+  };
+
+  onUpdateSearch = (term) => {
+    this.setState({ term });
+  };
+
+  onChangeSelect = (category) => {
+    this.setState({
+      filter: category,
+    });
+  };
+
+  filterCategory = (items, filter) => {
+    switch (filter) {
+      case "Fruits":
+        return items.filter((item) => item.category === "Fruits");
+      case "Vegetables":
+        return items.filter((item) => item.category === "Vegetables");
+      default:
+        return items;
+    }
+  };
+
   render() {
+    const { products, term, filter } = this.state;
+    const visibleProducts = this.filterCategory(
+      this.searchProd(products, term),
+      filter
+    );
+
     return (
       <div>
+        <SearchPanel onUpdateSearch={this.onUpdateSearch} />
+        <CategoryFilter
+          onChangeSelect={this.onChangeSelect}
+          category={this.state.products}
+        />
         <AddProduct addNewProduct={this.addNewProduct} />
         <RenderProductCard
-          products={this.state.products}
+          products={visibleProducts}
           deleteItem={this.deleteItem}
           editItem={this.editItem}
         />
