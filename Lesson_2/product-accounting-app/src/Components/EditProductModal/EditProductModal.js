@@ -3,10 +3,6 @@ import Modal from "react-modal";
 import "../EditProductModal/EditProductModal.css";
 
 class EditProductModal extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const customStyles = {
       content: {
