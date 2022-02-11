@@ -96,7 +96,7 @@ class App extends Component {
   };
 
   searchProd = (items, term) => {
-    if (term.length === 1) {
+    if (term.length === 0) {
       return items;
     }
 
