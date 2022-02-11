@@ -16,7 +16,7 @@ class CategoryFilter extends Component {
   };
 
   render() {
-    const categories = this.props.category.map(({ category }) => category);
+    // const categories = this.props.category.map(({ category }) => category);
     // const uniqCategories = [...new Set(categories)];
 
     return (

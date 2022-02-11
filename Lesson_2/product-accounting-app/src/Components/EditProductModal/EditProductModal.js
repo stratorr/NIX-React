@@ -49,6 +49,7 @@ class EditProductModal extends Component {
                 this.setState({ name: event.target.value });
               }}
               minLength={3}
+              placeholder="Введите Имя"
               required
             />
             <p>category:</p>
@@ -58,6 +59,7 @@ class EditProductModal extends Component {
                 this.setState({ category: event.target.value });
               }}
               minLength={3}
+              placeholder="Введите Категорию"
               required
             />
             <p>price:</p>
@@ -67,6 +69,7 @@ class EditProductModal extends Component {
                 this.setState({ price: event.target.value });
               }}
               type="number"
+              placeholder="Введите Цену"
               required
             />
             <p>count:</p>
@@ -76,6 +79,7 @@ class EditProductModal extends Component {
               onChange={(event) => {
                 this.setState({ count: event.target.value });
               }}
+              placeholder="Введите Кол-во"
               required
             />
             <div className="buttons-group">
