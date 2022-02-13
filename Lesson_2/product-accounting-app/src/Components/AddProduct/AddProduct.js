@@ -82,6 +82,7 @@ class AddProduct extends Component {
             Add
           </button>
         </form>
+        <div className="test">test</div>
       </div>
     );
   }
