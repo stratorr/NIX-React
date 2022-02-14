@@ -4,6 +4,7 @@ import RenderProductCard from "../RenderProducCard/RenderProductCard";
 import AddProduct from "../AddProduct/AddProduct";
 import EditProductModal from "../EditProductModal/EditProductModal";
 import SearchPanel from "../SearchPanel/SearchPanel";
+import CategoryFilter from "../CategotyFilter/CategoryFilter";
 
 import "./App.css";
 
@@ -89,11 +90,27 @@ function App() {
     console.log(term);
   };
 
-  const visibleProducts = searchProd(allProducts, term);
+  const onChangeSelect = (category) => {
+    setFilter((filter = category));
+  };
+
+  const filterCategory = (items, filter) => {
+    switch (filter) {
+      case "Fruits":
+        return items.filter((item) => item.category === "Fruits");
+      case "Vegetables":
+        return items.filter((item) => item.category === "Vegetables");
+      default:
+        return items;
+    }
+  };
+
+  const visibleProducts = filterCategory(searchProd(allProducts, term), filter);
 
   return (
     <div>
       <SearchPanel onUpdateSearch={onUpdateSearch} />
+      <CategoryFilter onChangeSelect={onChangeSelect} category={allProducts} />
       <AddProduct addNewProduct={addNewProduct} />
       <RenderProductCard
         products={visibleProducts}
