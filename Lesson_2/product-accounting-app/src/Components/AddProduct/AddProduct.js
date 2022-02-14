@@ -1,91 +1,81 @@
-import { Component } from "react";
+import { useState } from "react";
 import "./AddProduct.css";
 
-class AddProduct extends Component {
-  constructor(props) {
-    super(props);
+function AddProduct(props) {
+  let [name, setName] = useState("");
+  let [category, setCategory] = useState("");
+  let [price, setPrice] = useState(0);
+  let [count, setCount] = useState("");
 
-    this.state = {
-      name: "",
-      category: "",
-      price: 0,
-      count: 0,
-    };
-  }
+  var inputs = document.querySelectorAll("input");
 
-  render() {
-    const { name, category, price, count } = this.state;
-    var inputs = document.querySelectorAll("input");
+  return (
+    <div className="AddProduct">
+      <form
+        action=""
+        onSubmit={(e) => {
+          e.preventDefault();
 
-    return (
-      <div className="AddProduct">
-        <form
-          action=""
-          onSubmit={(e) => {
-            e.preventDefault();
-            this.props.addNewProduct(name, category, price, count);
-            this.setState({
-              name: "",
-              category: "",
-              price: 0,
-              count: 0,
-            });
+          props.addNewProduct(name, category, price, count);
 
-            for (var i = 0; i < inputs.length; i++) {
-              inputs[i].value = "";
-            }
+          setName((name = ""));
+          setCategory((category = ""));
+          setPrice((price = 0));
+          setCount((count = 0));
+
+          for (var i = 0; i < inputs.length; i++) {
+            inputs[i].value = "";
+          }
+        }}
+        className="addProduct__form"
+      >
+        <p>Name:</p>
+        <input
+          minLength={3}
+          type="text"
+          onChange={(e) => {
+            setName((name = e.target.value));
           }}
-          className="addProduct__form"
-        >
-          <p>Name:</p>
-          <input
-            minLength={3}
-            type="text"
-            onChange={(e) => {
-              this.setState({ name: e.target.value });
-            }}
-            placeholder="Введите Имя Продукта"
-            required
-          />
-          <p>Category:</p>
-          <input
-            minLength={3}
-            type="text"
-            onChange={(e) => {
-              this.setState({ category: e.target.value });
-            }}
-            placeholder="Введите Категорию"
-            required
-          />
-          <p>Price:</p>
-          <input
-            type="number"
-            onChange={(e) => {
-              this.setState({ price: e.target.value });
-            }}
-            placeholder="Введите Цену"
-            required
-          />
+          placeholder="Введите Имя Продукта"
+          required
+        />
+        <p>Category:</p>
+        <input
+          minLength={3}
+          type="text"
+          onChange={(e) => {
+            setCategory((category = e.target.value));
+          }}
+          placeholder="Введите Категорию"
+          required
+        />
+        <p>Price:</p>
+        <input
+          type="number"
+          onChange={(e) => {
+            setPrice((price = e.target.value));
+          }}
+          placeholder="Введите Цену"
+          required
+        />
 
-          <p>Count:</p>
-          <input
-            type="number"
-            onChange={(e) => {
-              this.setState({ count: e.target.value });
-            }}
-            className="test"
-            placeholder="Введите Кол-во"
-            required
-          />
+        <p>Count:</p>
+        <input
+          type="number"
+          onChange={(e) => {
+            setCount((count = e.target.value));
+          }}
+          className="test"
+          placeholder="Введите Кол-во"
+          required
+        />
 
-          <button type="submit" className="btn btn-primary">
-            Add
-          </button>
-        </form>
-        <div className="test">test</div>
-      </div>
-    );
-  }
+        <button type="submit" className="btn btn-primary">
+          Add
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default AddProduct;

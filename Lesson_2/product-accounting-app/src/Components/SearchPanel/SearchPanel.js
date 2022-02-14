@@ -1,26 +1,22 @@
-import { Component } from "react";
 import "./SearchPanel.css";
 
-class SearchPanel extends Component {
-  onUpdateSeach = (e) => {
+function SearchPanel(props) {
+  const onUpdateSearch = (e) => {
     const term = e.target.value;
-
-    this.props.onUpdateSearch(term);
+    props.onUpdateSearch(term);
   };
 
-  render() {
-    return (
-      <div className="search">
-        <span>Search:</span>
-        <input
-          type="text"
-          className="search__panel"
-          placeholder="Найти Продукт"
-          onChange={this.onUpdateSeach}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="search">
+      <span>Search:</span>
+      <input
+        type="text"
+        className="search__panel"
+        placeholder="Найти Продукт"
+        onChange={onUpdateSearch}
+      />
+    </div>
+  );
 }
 
 export default SearchPanel;
