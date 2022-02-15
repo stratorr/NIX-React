@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import RenderProductCard from "../RenderProducCard/RenderProductCard";
 import AddProduct from "../AddProduct/AddProduct";
 import EditProductModal from "../EditProductModal/EditProductModal";

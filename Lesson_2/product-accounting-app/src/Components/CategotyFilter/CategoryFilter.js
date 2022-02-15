@@ -1,10 +1,9 @@
 import "./CategoryFilter.css";
 
 function CategoryFilter(props) {
-  const onUptadetSelect = () => {
-    const select = document.querySelector(".select__category");
-    console.log(select.value);
-    props.onChangeSelect(select.value);
+  const onUptadetSelect = (e) => {
+    const select = e.target.value;
+    props.onChangeSelect(select);
   };
 
   return (
