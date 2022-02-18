@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import RenderProductCard from "../RenderProducCard/RenderProductCard";
 import AddProduct from "../AddProduct/AddProduct";
 import EditProductModal from "../EditProductModal/EditProductModal";
@@ -52,7 +52,7 @@ function App() {
 
   const editItem = (id) => {
     onOpenModal();
-    setCurrentId((currentId = id));
+    setCurrentId(id);
   };
 
   const addNewProduct = (name, category, price, count) => {
@@ -73,7 +73,7 @@ function App() {
       }
       return product;
     });
-    setProducts((allProducts = updatedProducts));
+    setProducts(updatedProducts);
   };
 
   const searchProd = (items, term) => {
@@ -86,12 +86,11 @@ function App() {
   };
 
   const onUpdateSearch = (termProp) => {
-    setTerm((term = termProp));
-    console.log(term);
+    setTerm(termProp);
   };
 
   const onChangeSelect = (category) => {
-    setFilter((filter = category));
+    setFilter(category);
   };
 
   const filterCategory = (items, filter) => {
